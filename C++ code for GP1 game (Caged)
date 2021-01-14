@@ -1,0 +1,22 @@
+UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Output Player Position")
+FVector getPlayerPosition() const;
+
+
+
+
+
+FVector AMyCharacter::getPlayerPosition() const
+{
+	// get first player pawn location
+	FVector MyCharacter = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+
+	//=========screen log player location==============
+	// Standard way to log to console.
+	UE_LOG(LogTemp, Warning, TEXT("Player Location via UE_LOG: %s"), *MyCharacter.ToString());
+
+	// log vector to screen
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Player Location via AddOnScreenDebugMessage: %s"), *MyCharacter.ToString()));
+	//======================
+
+	return MyCharacter;
+}
